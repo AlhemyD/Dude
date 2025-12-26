@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://udiba07oudwd"]
+[gd_scene load_steps=22 format=3 uid="uid://udiba07oudwd"]
 
 [ext_resource type="Texture2D" uid="uid://cgpjs1yu45nlv" path="res://assets/background.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://bvx0d5yrmfwrn" path="res://scripts/main.gd" id="1_sugp2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dffhnuqcyoowm" path="res://physic_dude.tscn" id="5_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://cxophjxch1cae" path="res://assets/box.png" id="6_tefeu"]
 [ext_resource type="Texture2D" uid="uid://cew5t2kgnapo" path="res://assets/box_hit.png" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://dwav7vng6lpwk" path="res://scenes/fire_trap.tscn" id="8_tipki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(586, 19)
@@ -231,3 +232,6 @@ position = Vector2(381, 556)
 
 [node name="Slime2" parent="." instance=ExtResource("2_0wfyh")]
 position = Vector2(704, 569)
+
+[node name="TrapArea" parent="." instance=ExtResource("8_tipki")]
+position = Vector2(241, 534)

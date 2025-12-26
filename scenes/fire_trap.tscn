@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwav7vng6lpwk"]
+
+[ext_resource type="Script" uid="uid://mmcfwl4intyu" path="res://scripts/fire_trap.gd" id="1_6dvj4"]
+[ext_resource type="Texture2D" uid="uid://bo6d673gsrtrc" path="res://assets/trap/Fire Trap - Level 3.png" id="2_ehxbr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0b03g"]
+size = Vector2(24, 8)
+
+[sub_resource type="Animation" id="Animation_ld51v"]
+resource_name = "trapped"
+length = 3.8
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45000002, 0.6, 0.75, 0.90000004, 1.0500001, 1.2, 1.35, 1.5, 1.6500001, 1.8000001, 1.95, 2.1000001, 2.25, 2.4, 2.5500002, 2.7, 2.8500001, 3, 3.15, 3.3000002, 3.45, 3.6000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0]
+}
+
+[sub_resource type="Animation" id="Animation_5kh4j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hs63w"]
+_data = {
+&"RESET": SubResource("Animation_5kh4j"),
+&"trapped": SubResource("Animation_ld51v")
+}
+
+[node name="TrapArea" type="Area2D"]
+script = ExtResource("1_6dvj4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ehxbr")
+hframes = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 28)
+shape = SubResource("RectangleShape2D_0b03g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hs63w")
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
+amount = 2
+emission_shape = 3
+emission_rect_extents = Vector2(20, 1)
+gravity = Vector2(0, -980)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

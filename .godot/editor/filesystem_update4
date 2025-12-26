@@ -1,2 +1,5 @@
+res://scenes/fire_trap.tscn
+res://scripts/fire_trap.gd
 res://scenes/main.tscn
-res://scenes/slime.tscn
+res://physic_dude.tscn
+res://scripts/physic_dude.gd
