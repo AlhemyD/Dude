@@ -1,4 +1,2 @@
 res://scenes/main.tscn
-res://scripts/main.gd
 res://scenes/slime.tscn
-res://scripts/physic_dude.gd
